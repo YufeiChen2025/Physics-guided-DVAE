@@ -1,0 +1,28 @@
+{
+  "seed": 42,
+  "epochs": 8,
+  "patience": 3,
+  "batch_size": 128,
+  "lr": 0.0003,
+  "init": "archive:seed42_stage1",
+  "normalization": "standard",
+  "rec_mode": "fixed",
+  "rec_weight": 0.1,
+  "beta": 0.001,
+  "cls_weight": 2.0,
+  "weight_power": 0.5,
+  "train_limit": 0,
+  "grad_clip": 5.0,
+  "pool": "stats",
+  "mask_input": true,
+  "evidence": false,
+  "rule": false,
+  "chain": false,
+  "delivery": "GPU cache with deterministic fixed-seed batches",
+  "confirmation_runner_sha256": {
+    "confirm.py": "472133b98e05a7970fe53bf606677669f4a31ef496ccf73bf1e4899abe58291b",
+    "evaluate.py": "7621d5f91b4517191780d11667b3012c3bcbf5e065b09a24e14e36a2bb9134fa",
+    "fast_train.py": "f7ff284c5afb1cdf5ad7ad13111f75928d916499243aad45b6f33e6033d9bca9",
+    "test_fast.py": "9abc731b4983f0c3ee52f1b1317ca54219482de351be979905eb8b0ae180ca51"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model_type": "lstm",
+  "use_obs7d": false,
+  "T": 128,
+  "stride": 128,
+  "max_windows_per_file": 100000,
+  "clip_norm": 20.0,
+  "epochs": 10,
+  "bs": 64,
+  "lr": 0.001,
+  "L2": 1e-05,
+  "hidden_dim": 64,
+  "num_layers": 1,
+  "dropout": 0.1,
+  "pooling": "mean",
+  "patience": 4,
+  "seed": 42,
+  "num_workers": 4
+}

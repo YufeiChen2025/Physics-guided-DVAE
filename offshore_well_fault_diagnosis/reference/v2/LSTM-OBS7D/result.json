@@ -1,0 +1,231 @@
+{
+  "task": "multiclass",
+  "model_type": "lstm",
+  "use_obs7d": true,
+  "obs7d_names": [
+    "wc_proxy_rise",
+    "wc_proxy_smooth",
+    "dhsv_open_mean",
+    "pck_drop",
+    "pck_open_mean",
+    "dhsv_low_evidence",
+    "pck_low_evidence"
+  ],
+  "runtime_minutes": 10.653708465894063,
+  "train_windows": 392484,
+  "val_windows": 87405,
+  "test_windows": 85717,
+  "best_val_macro_f1": 0.8900277557556384,
+  "test_metrics": {
+    "accuracy": 0.8603427558127326,
+    "macro_f1": 0.8612290888277926,
+    "balanced_accuracy": 0.867583616891842,
+    "per_class": {
+      "0": {
+        "precision": 0.7572190232458946,
+        "recall": 0.7705295138888889,
+        "f1": 0.7638162848230611,
+        "support": 23040
+      },
+      "1": {
+        "precision": 0.8675299760191847,
+        "recall": 0.9760414418303475,
+        "f1": 0.9185922502666193,
+        "support": 9266
+      },
+      "2": {
+        "precision": 0.9125248508946322,
+        "recall": 0.9291497975708503,
+        "f1": 0.9207622868605818,
+        "support": 494
+      },
+      "3": {
+        "precision": 0.931753235837956,
+        "recall": 0.8962004850444624,
+        "f1": 0.9136311191692764,
+        "support": 6185
+      },
+      "4": {
+        "precision": 0.7537402752842609,
+        "recall": 0.8894774011299436,
+        "f1": 0.8160025915127955,
+        "support": 2832
+      },
+      "5": {
+        "precision": 0.9788677276284894,
+        "recall": 0.9948955916473318,
+        "f1": 0.9868165828319688,
+        "support": 15085
+      },
+      "6": {
+        "precision": 0.9565217391304348,
+        "recall": 1.0,
+        "f1": 0.9777777777777777,
+        "support": 6468
+      },
+      "7": {
+        "precision": 0.8817090861136754,
+        "recall": 0.7930257383465781,
+        "f1": 0.835019358061696,
+        "support": 8431
+      },
+      "8": {
+        "precision": 0.6998763906056861,
+        "recall": 0.44822672577580747,
+        "f1": 0.5464723482289353,
+        "support": 6316
+      },
+      "9": {
+        "precision": 0.8924498859680711,
+        "recall": 0.9782894736842105,
+        "f1": 0.9334002887452136,
+        "support": 7600
+      }
+    },
+    "confusion_matrix": [
+      [
+        17753,
+        846,
+        44,
+        126,
+        683,
+        324,
+        294,
+        892,
+        1182,
+        896
+      ],
+      [
+        0,
+        9044,
+        0,
+        222,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        26,
+        0,
+        459,
+        2,
+        0,
+        0,
+        0,
+        5,
+        2,
+        0
+      ],
+      [
+        0,
+        472,
+        0,
+        5543,
+        140,
+        0,
+        0,
+        0,
+        30,
+        0
+      ],
+      [
+        257,
+        0,
+        0,
+        56,
+        2519,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        77,
+        0,
+        0,
+        0,
+        0,
+        15008,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6468,
+        0,
+        0,
+        0
+      ],
+      [
+        1682,
+        63,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6686,
+        0,
+        0
+      ],
+      [
+        3485,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2831,
+        0
+      ],
+      [
+        165,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7435
+      ]
+    ]
+  },
+  "model_path": "lstm_obs7d_full.pth",
+  "split_file": "3w_seed42_full_val15_test15.json",
+  "test_split_sha256": "9e9fdd5a5f66922b9df8fee0b2387e38b784122e49aa301dfdc546be2f57e683",
+  "evidence_note": "obs7d is a pure observation-derived proxy evidence set; water dimensions use a pressure-flow-temperature proxy because measured water cut is unavailable.",
+  "config": {
+    "model_type": "lstm",
+    "use_obs7d": true,
+    "T": 128,
+    "stride": 128,
+    "max_windows_per_file": 100000,
+    "clip_norm": 20.0,
+    "epochs": 10,
+    "bs": 64,
+    "lr": 0.001,
+    "L2": 1e-05,
+    "hidden_dim": 64,
+    "num_layers": 1,
+    "dropout": 0.1,
+    "pooling": "mean",
+    "patience": 4,
+    "seed": 42,
+    "num_workers": 4
+  }
+}

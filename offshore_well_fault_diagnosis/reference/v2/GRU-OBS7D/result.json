@@ -1,0 +1,231 @@
+{
+  "task": "multiclass",
+  "model_type": "gru",
+  "use_obs7d": true,
+  "obs7d_names": [
+    "wc_proxy_rise",
+    "wc_proxy_smooth",
+    "dhsv_open_mean",
+    "pck_drop",
+    "pck_open_mean",
+    "dhsv_low_evidence",
+    "pck_low_evidence"
+  ],
+  "runtime_minutes": 11.481067939599354,
+  "train_windows": 392484,
+  "val_windows": 87405,
+  "test_windows": 85717,
+  "best_val_macro_f1": 0.8885836614012055,
+  "test_metrics": {
+    "accuracy": 0.8396934097086926,
+    "macro_f1": 0.8566427599737777,
+    "balanced_accuracy": 0.8640950195877123,
+    "per_class": {
+      "0": {
+        "precision": 0.8096483133394853,
+        "recall": 0.6854600694444445,
+        "f1": 0.7423964650025855,
+        "support": 23040
+      },
+      "1": {
+        "precision": 0.9144590495449949,
+        "recall": 0.9760414418303475,
+        "f1": 0.9442472332428481,
+        "support": 9266
+      },
+      "2": {
+        "precision": 1.0,
+        "recall": 0.9331983805668016,
+        "f1": 0.9654450261780104,
+        "support": 494
+      },
+      "3": {
+        "precision": 0.9986735201459128,
+        "recall": 0.9738075990299111,
+        "f1": 0.9860838244924689,
+        "support": 6185
+      },
+      "4": {
+        "precision": 0.7587939698492462,
+        "recall": 0.9064265536723164,
+        "f1": 0.8260659694288012,
+        "support": 2832
+      },
+      "5": {
+        "precision": 0.7765704232639967,
+        "recall": 0.9948955916473318,
+        "f1": 0.8722792130423411,
+        "support": 15085
+      },
+      "6": {
+        "precision": 0.9474316611595074,
+        "recall": 0.9752628324056896,
+        "f1": 0.9611458174615267,
+        "support": 6468
+      },
+      "7": {
+        "precision": 0.8435528639919253,
+        "recall": 0.7930257383465781,
+        "f1": 0.8175093232255304,
+        "support": 8431
+      },
+      "8": {
+        "precision": 0.6319196428571429,
+        "recall": 0.44822672577580747,
+        "f1": 0.5244535012967766,
+        "support": 6316
+      },
+      "9": {
+        "precision": 0.9005710029791459,
+        "recall": 0.9546052631578947,
+        "f1": 0.9268012263668882,
+        "support": 7600
+      }
+    },
+    "confusion_matrix": [
+      [
+        15793,
+        846,
+        0,
+        0,
+        683,
+        2099,
+        350,
+        1007,
+        1461,
+        801
+      ],
+      [
+        0,
+        9044,
+        0,
+        0,
+        0,
+        0,
+        0,
+        222,
+        0,
+        0
+      ],
+      [
+        20,
+        0,
+        461,
+        0,
+        0,
+        0,
+        0,
+        11,
+        2,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        6023,
+        133,
+        0,
+        0,
+        0,
+        29,
+        0
+      ],
+      [
+        257,
+        0,
+        0,
+        8,
+        2567,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        76,
+        0,
+        0,
+        0,
+        0,
+        15008,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6308,
+        0,
+        156,
+        0
+      ],
+      [
+        1745,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6686,
+        0,
+        0
+      ],
+      [
+        1266,
+        0,
+        0,
+        0,
+        0,
+        2219,
+        0,
+        0,
+        2831,
+        0
+      ],
+      [
+        345,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7255
+      ]
+    ]
+  },
+  "model_path": "gru_obs7d_full.pth",
+  "split_file": "3w_seed42_full_val15_test15.json",
+  "test_split_sha256": "9e9fdd5a5f66922b9df8fee0b2387e38b784122e49aa301dfdc546be2f57e683",
+  "evidence_note": "obs7d is a pure observation-derived proxy evidence set; water dimensions use a pressure-flow-temperature proxy because measured water cut is unavailable.",
+  "config": {
+    "model_type": "gru",
+    "use_obs7d": true,
+    "T": 128,
+    "stride": 128,
+    "max_windows_per_file": 100000,
+    "clip_norm": 20.0,
+    "epochs": 10,
+    "bs": 64,
+    "lr": 0.001,
+    "L2": 1e-05,
+    "hidden_dim": 64,
+    "num_layers": 1,
+    "dropout": 0.1,
+    "pooling": "mean",
+    "patience": 4,
+    "seed": 42,
+    "num_workers": 4
+  }
+}

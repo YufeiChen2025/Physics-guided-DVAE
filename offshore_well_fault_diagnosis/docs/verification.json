@@ -1,0 +1,204 @@
+{
+  "evaluation_runs": [
+    {
+      "version": "2.0.0",
+      "group": "A0",
+      "seed": 42,
+      "macro_f1": 0.8305136543765336,
+      "confusion_matrix_exact": true
+    },
+    {
+      "version": "2.0.0",
+      "group": "B",
+      "seed": 42,
+      "macro_f1": 0.8663172281678673,
+      "confusion_matrix_exact": true
+    },
+    {
+      "version": "2.0.0",
+      "group": "C",
+      "seed": 42,
+      "macro_f1": 0.8608606210994548,
+      "confusion_matrix_exact": true
+    },
+    {
+      "version": "2.0.0",
+      "group": "D",
+      "seed": 42,
+      "macro_f1": 0.8571313858047537,
+      "confusion_matrix_exact": true
+    },
+    {
+      "version": "2.0.0",
+      "group": "E-ZERO-DECAY",
+      "seed": 42,
+      "macro_f1": 0.8532337321494969,
+      "confusion_matrix_exact": true
+    },
+    {
+      "version": "2.0.0",
+      "group": "E",
+      "seed": 42,
+      "macro_f1": 0.9013259817391399,
+      "confusion_matrix_exact": true
+    },
+    {
+      "version": "2.0.0",
+      "group": "GRU-OBS7D",
+      "seed": 42,
+      "macro_f1": 0.8566427599737777,
+      "confusion_matrix_exact": true
+    },
+    {
+      "version": "2.0.0",
+      "group": "GRU",
+      "seed": 42,
+      "macro_f1": 0.8587917047505037,
+      "confusion_matrix_exact": true
+    },
+    {
+      "version": "2.0.0",
+      "group": "LSTM-OBS7D",
+      "seed": 42,
+      "macro_f1": 0.8612290888277926,
+      "confusion_matrix_exact": true
+    },
+    {
+      "version": "2.0.0",
+      "group": "LSTM",
+      "seed": 42,
+      "macro_f1": 0.8584355692564246,
+      "confusion_matrix_exact": true
+    },
+    {
+      "version": "1.1.1",
+      "group": "A",
+      "seed": 2025,
+      "macro_f1": 0.9018392918454919,
+      "confusion_matrix_exact": true,
+      "predictions_exact": true,
+      "labels_exact": true,
+      "sources_exact": true
+    },
+    {
+      "version": "1.1.1",
+      "group": "B",
+      "seed": 2025,
+      "macro_f1": 0.9269169335945051,
+      "confusion_matrix_exact": true,
+      "predictions_exact": true,
+      "labels_exact": true,
+      "sources_exact": true
+    },
+    {
+      "version": "1.1.1",
+      "group": "C",
+      "seed": 2025,
+      "macro_f1": 0.9104554417955263,
+      "confusion_matrix_exact": true,
+      "predictions_exact": true,
+      "labels_exact": true,
+      "sources_exact": true
+    },
+    {
+      "version": "1.1.1",
+      "group": "D",
+      "seed": 2025,
+      "macro_f1": 0.9252944500237194,
+      "confusion_matrix_exact": true,
+      "predictions_exact": true,
+      "labels_exact": true,
+      "sources_exact": true
+    },
+    {
+      "version": "1.1.1",
+      "group": "EVIDENCE",
+      "seed": 2025,
+      "macro_f1": 0.8878014958735241,
+      "confusion_matrix_exact": true,
+      "predictions_exact": true,
+      "labels_exact": true,
+      "sources_exact": true
+    },
+    {
+      "version": "1.1.1",
+      "group": "A",
+      "seed": 42,
+      "macro_f1": 0.8121690026814541,
+      "confusion_matrix_exact": true,
+      "predictions_exact": true,
+      "labels_exact": true,
+      "sources_exact": true
+    },
+    {
+      "version": "1.1.1",
+      "group": "B",
+      "seed": 42,
+      "macro_f1": 0.9122944091083034,
+      "confusion_matrix_exact": true,
+      "predictions_exact": true,
+      "labels_exact": true,
+      "sources_exact": true
+    },
+    {
+      "version": "1.1.1",
+      "group": "C",
+      "seed": 42,
+      "macro_f1": 0.9052334782693939,
+      "confusion_matrix_exact": true,
+      "predictions_exact": true,
+      "labels_exact": true,
+      "sources_exact": true
+    },
+    {
+      "version": "1.1.1",
+      "group": "D",
+      "seed": 42,
+      "macro_f1": 0.9312241674212149,
+      "confusion_matrix_exact": true,
+      "predictions_exact": true,
+      "labels_exact": true,
+      "sources_exact": true
+    },
+    {
+      "version": "1.1.1",
+      "group": "EVIDENCE",
+      "seed": 42,
+      "macro_f1": 0.9159665622117724,
+      "confusion_matrix_exact": true,
+      "predictions_exact": true,
+      "labels_exact": true,
+      "sources_exact": true
+    }
+  ],
+  "window_counts": {
+    "2.0.0": [
+      392484,
+      87405,
+      85717
+    ],
+    "1.1.1": [
+      276108,
+      61744,
+      57401
+    ]
+  },
+  "csv_instances_rebuilt": 1978,
+  "one_epoch_checks_on_small_real_subsets": {
+    "2.0.0": [
+      "A0",
+      "E",
+      "E-ZERO-DECAY",
+      "GRU-OBS7D"
+    ],
+    "1.1.1": [
+      "Stage 1",
+      "P3",
+      "B",
+      "C",
+      "D",
+      "EVIDENCE"
+    ]
+  },
+  "full_retraining_performed": false
+}

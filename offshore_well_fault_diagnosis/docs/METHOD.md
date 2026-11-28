@@ -14,10 +14,10 @@ The model classifies 128-sample windows with a stride of 128. The DVAE uses recu
 | A0 | | | | 0.830514 |
 | B | Yes | | | 0.866317 |
 | C | Yes | Yes | | 0.860861 |
-| D | Yes | | Yes | 0.857131 |
+| D | | | Yes | 0.849425 |
 | E | Yes | Yes | Yes | 0.901326 |
 
-B is the evidence-only control. B–E have an additional training stage compared with A0. The original E's feature selection included historical test feedback. The file-level split can include instances from the same well in different partitions. Whole-window encoding and preprocessing make this an offline recognition setup.
+B is the evidence-only control. D uses only the DVAE representation at classification time and adds the conditional prediction loss during training. B–E have an additional training stage compared with A0. The original E's feature selection included historical test feedback. The file-level split can include instances from the same well in different partitions. Whole-window encoding and preprocessing make this an offline recognition setup.
 
 Supplemental groups GRU, GRU-OBS7D, LSTM, and LSTM-OBS7D are full-split recurrent comparisons. The OBS7D features are observation-derived proxies and differ from the DVAE evidence. E-ZERO-DECAY uses a separate optimizer group with zero weight decay for the chain and obtains test Macro-F1 0.853234. The original E's auxiliary parameter collapse and this diagnostic limit physical interpretations of the chain.
 
@@ -33,11 +33,11 @@ Supplemental groups GRU, GRU-OBS7D, LSTM, and LSTM-OBS7D are full-split recurren
 |---|---|---|---|---:|
 | A | | | | 0.857004 ± 0.063406 |
 | B | Yes | Yes | | 0.919606 ± 0.010340 |
-| C | Yes | | Yes | 0.907844 ± 0.003692 |
+| C | | | Yes | 0.864739 ± 0.032804 |
 | D | Yes | Yes | Yes | 0.928259 ± 0.004193 |
 | EVIDENCE | Yes | | | 0.901884 ± 0.019916 |
 
-EVIDENCE matches the joint-stage protocol of B–D and retains the new 7D input. Comparisons with A include extra joint training. The test split had historical exposure. The two releases have distinct sensor and label configurations.
+C classifies from the 24-dimensional DVAE representation. The joint-stage EVIDENCE control isolates the feature input under the same continuation schedule. Comparisons with A include extra joint training. The test split had historical exposure. The two releases have distinct sensor and label configurations.
 
 ## Source map
 
@@ -45,11 +45,11 @@ EVIDENCE matches the joint-stage protocol of B–D and retains the new 7D input.
 |---|---|
 | 2.0.0 dataset | code/TRANS/DVAE_3W/threew/dataset.py |
 | 2.0.0 DVAE training and chain | code/TRANS/DVAE_3W/train_3w_dvae_classifier.py |
-| 2.0.0 7D features and rule loss | code/DVAE_PINN/10d_dimension_ablation/unified_physical_rule_loss.py |
+| 2.0.0 7D features and rule loss | code/DVAE_PINN/physics_guided_7d/unified_physical_rule_loss.py |
 | 2.0.0 recurrent baselines | code/TRANS/DVAE_3W/train_recurrent_obs7d.py |
 | 1.1.1 CSV and masks | code/DVAE_PINN/experiments_3w_v1_1_1/src/prepare.py |
 | 1.1.1 Stage 1 and P3 | code/DVAE_PINN/experiments_3w_v1_1_1/src/train.py and tuning_20261028/ |
 | 1.1.1 features and rule | code/DVAE_PINN/adapted_p3_new7_20261110/worker.py |
 | 1.1.1 chain training | code/DVAE_PINN/chain_adaptation_20261111/experiment.py and code/adapted.py |
 
-The historical Chinese notes give additional context. Paths marked historical-source/ refer to the original experiment archive. The packaged entry point is reproduce.py.
+The 3W 2.0.0 evidence implementation computes the seven features in a fixed order. [中文实验配置与结果](实验配置与结果.md). The packaged entry point is reproduce.py.

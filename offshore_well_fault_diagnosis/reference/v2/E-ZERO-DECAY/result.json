@@ -226,8 +226,8 @@
   },
   "test_physical_aux_metrics": {},
   "test_structured_transition_metrics": {},
-  "model_path": "E_full7d_chain_weight_decay0_seed42.pth",
-  "split_file": "3w_seed42_full_val15_test15.json",
+  "model_path": "reference/v2/E-ZERO-DECAY/best.pt",
+  "split_file": "protocols/v2/fixed_split.json",
   "split_mode": "loaded",
   "test_split_sha256": "9e9fdd5a5f66922b9df8fee0b2387e38b784122e49aa301dfdc546be2f57e683",
   "config": {
@@ -334,6 +334,8 @@
     "freeze_chain_prior": false,
     "freeze_physical_aux": false,
     "save_last": false,
-    "save_resume_state": true
+    "save_resume_state": true,
+    "run_name": "E-ZERO-DECAY",
+    "pinn_root": "code/DVAE_PINN/physics_guided_7d"
   }
 }

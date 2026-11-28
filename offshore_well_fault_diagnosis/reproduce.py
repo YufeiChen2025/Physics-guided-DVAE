@@ -25,7 +25,7 @@ V2_EXTRA = ("GRU", "GRU-OBS7D", "LSTM", "LSTM-OBS7D", "E-ZERO-DECAY")
 PARTS = ("train", "val", "test")
 SEEDS = (42, 2025)
 WINDOWS = {"2.0.0": (392484, 87405, 85717), "1.1.1": (276108, 61744, 57401)}
-KEEP = "water_rise,water_smooth,dhsv_open_mean,pck_drop,pck_open_mean,dhsv_low_evidence,pck_low_evidence"
+
 
 
 def read(path):
@@ -101,18 +101,10 @@ def command_v2(args, data, group):
     config = read(protocol / f"{group}.json")
     if args.num_workers is not None:
         config["num_workers"] = args.num_workers
-    env = os.environ.copy()
-    env.pop("RULE_EVIDENCE_KEEP", None)
-    env.pop("RULE_EVIDENCE_DROP", None)
-    env.pop("RULE_EVIDENCE_ABLATION_NAME", None)
     baseline_model = config.get("model_type") in ("gru", "lstm")
-    if group in ("E", "E-ZERO-DECAY"):
-        env["RULE_EVIDENCE_DROP"] = "dp_trend,pck_smooth,dhsv_drop"
-    elif not baseline_model and group != "A0":
-        env["RULE_EVIDENCE_KEEP"] = KEEP
     config.update(data_root=data, split_file=protocol / "fixed_split.json", run_name=group)
     if not baseline_model:
-        config["pinn_root"] = PIN / "10d_dimension_ablation"
+        config["pinn_root"] = PIN / "physics_guided_7d"
     work = args.work_dir / "v2" / args.action
     config["output_dir"] = work
     if args.action == "evaluate":
@@ -136,8 +128,6 @@ def command_v2(args, data, group):
     result = work / f"{group}_results.json"
     if args.action == "train":
         run_record = dict(config)
-        run_record["evidence_keep"] = env.get("RULE_EVIDENCE_KEEP")
-        run_record["evidence_drop"] = env.get("RULE_EVIDENCE_DROP")
         run_record = {key: str(value) if isinstance(value, Path) else value for key, value in run_record.items()}
         manifest = work / f"{group}_requested_config.json"
         if manifest.is_file() and read(manifest) != run_record:
@@ -154,7 +144,7 @@ def command_v2(args, data, group):
         elif value is not False and value is not None:
             argv.extend((f"--{key}", value))
     script = V2 / ("train_recurrent_obs7d.py" if baseline_model else "train_3w_dvae_classifier.py")
-    execute(script, argv, work / "logs" / f"{group}.log", env)
+    execute(script, argv, work / "logs" / f"{group}.log")
     out = read(result)
     counts = tuple(out[f"{part}_windows"] for part in PARTS)
     expected_sha = read(protocol / "fixed_split.json")["test_sha256"]
@@ -210,8 +200,9 @@ def command_v111(args, data, groups, seeds):
     block = "frozen" if is_reference else "fitted"
     if is_reference:
         env["DVAE_V111_ADAPTED"] = str(work / "reference_adapted")
-    execute(V111_RUNNER, ["evidence", "--stats", block],
-            work / "logs" / f"evidence_{block}.log", env)
+    if any(group in ("B", "D", "EVIDENCE") for group in groups):
+        execute(V111_RUNNER, ["evidence", "--stats", block],
+                work / "logs" / f"evidence_{block}.log", env)
     if args.action == "train":
         for seed in seeds:
             baseline_v111(args.baseline, seed, work, env)

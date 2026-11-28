@@ -1,13 +1,13 @@
 # Verification
 
-The packaged model state tensors were checked against their local archived originals after export. Model weights and normalization data were preserved. Machine-specific launch paths were removed from the distributed weights and result metadata. The entry points supply the package paths at run time.
+## Chain-only ablations
 
-## Full checkpoint replay
+The released 3W 2.0.0 group D uses the archived DVAE + chain checkpoint (historical experiment F). All 85,717 test windows were re-evaluated and the confusion matrix and classification metrics matched the original. The classifier receives eight DVAE features. The conditional predictor retains the 2.0.0 protocol's joint weight decay of 1e-5.
 
-The 3W 1.1.1 cache was rebuilt from 1,978 original CSV instances using the packaged split. The original counts of 276,108 training, 61,744 validation and 57,401 test windows were recovered. The fixed split and training normalization were checked against the archived configuration.
+The released 3W 1.1.1 group C was trained from the corresponding P3 baseline for seeds 42 and 2025. The training used the fixed split and continuation schedule, with a separate zero-weight-decay optimizer group for the conditional predictor. Each seed used the classification checkpoint selected by validation Macro-F1. The classifier receives the 24-dimensional latent summary. Both checkpoints were separately evaluated on the 57,401-window test split, and the prediction IDs and confusion matrices matched the released results. A small one-epoch paired check also verified identical model tensors across the packaging cleanup for 1.1.1 groups B, C and D.
 
-On Windows with Python 3.11, PyTorch 2.3.0+cu118 and an RTX 4060 Laptop GPU, all 20 checkpoint evaluations recovered their historical confusion matrices and Macro-F1 values. This covers ten 2.0.0 runs across the main and supplemental groups, and five 1.1.1 configurations at each of two seeds. For 1.1.1 all 57,401 window labels and predicted class IDs of each run also matched the stored predictions exactly. [Machine-readable comparison](verification.json).
+## Other published configurations
 
-## Training checks
+3W 2.0.0 groups B, C, E and E-ZERO-DECAY use the fixed seven-feature implementation. The retained archived model tensors and normalization statistics were checked when the package was exported, and complete checkpoint replays matched the original confusion matrices. Other 3W 2.0.0 and 1.1.1 results are the archived checkpoint replays described by the underlying experiment protocols. The 3W 1.1.1 cache was rebuilt from 1,978 original CSV instances, recovering 276,108 training, 61,744 validation and 57,401 test windows.
 
-Small subsets of real windows were used for one-epoch checks. The 2.0.0 checks covered A0, E, E-ZERO-DECAY and GRU-OBS7D. The 1.1.1 checks covered the earlier Stage 1, P3 and all four joint branches (B, C, D and EVIDENCE). Full checkpoint replay and small training checks are separate. Full-scale retraining of every run, independent blind testing, and execution on a separate operating system were outside this verification.
+[Machine-readable checks](verification.json). Historical test sets had development exposure. These checks describe the fixed splits used in this repository.

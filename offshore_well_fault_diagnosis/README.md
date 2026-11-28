@@ -4,6 +4,8 @@ This research bundle implements window-level fault diagnosis on Petrobras 3W. A 
 
 See [Method and experiment map](docs/METHOD.md), [Data sources](docs/DATA.md), [Verification](docs/VERIFICATION.md), and the [Chinese quick start](README_zh.md).
 
+The chain-only ablations are D on 3W 2.0.0 and C on 3W 1.1.1. They classify using the DVAE representation and add the conditional prediction loss during training.
+
 ## 1. Check the packaged results
 
 From the extracted directory, with Python 3.11:

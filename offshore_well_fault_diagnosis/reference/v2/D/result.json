@@ -1,123 +1,123 @@
 {
   "task": "multiclass",
-  "runtime_minutes": 42.912190302213034,
+  "runtime_minutes": 33.6999075015386,
   "train_windows": 392484,
   "val_windows": 87405,
   "test_windows": 85717,
-  "best_val_macro_f1": 0.8726075189857785,
+  "best_val_macro_f1": 0.8888478056621057,
   "test_metrics": {
-    "accuracy": 0.8412683598352719,
-    "macro_f1": 0.8571313858047537,
-    "balanced_accuracy": 0.8626320514128827,
+    "accuracy": 0.8321686479928135,
+    "macro_f1": 0.8494245612744912,
+    "balanced_accuracy": 0.8594475811061514,
     "per_class": {
       "0": {
-        "precision": 0.8661021578803606,
-        "recall": 0.6881076388888889,
-        "f1": 0.766912565001814,
+        "precision": 0.865224146860793,
+        "recall": 0.6525607638888888,
+        "f1": 0.7439938639681322,
         "support": 23040
       },
       "1": {
-        "precision": 0.9143665958952583,
-        "recall": 0.9760414418303475,
-        "f1": 0.9441979433105393,
+        "precision": 0.8771298750473305,
+        "recall": 1.0,
+        "f1": 0.934543620776601,
         "support": 9266
       },
       "2": {
-        "precision": 1.0,
+        "precision": 0.9978354978354979,
         "recall": 0.9331983805668016,
-        "f1": 0.9654450261780104,
+        "f1": 0.9644351464435146,
         "support": 494
       },
       "3": {
-        "precision": 0.9730283911671924,
-        "recall": 0.997413096200485,
-        "f1": 0.9850698602794411,
+        "precision": 0.9738046394192835,
+        "recall": 0.9977364591754244,
+        "f1": 0.9856252994729277,
         "support": 6185
       },
       "4": {
-        "precision": 0.7783521809369952,
+        "precision": 0.7679311444054829,
         "recall": 0.850635593220339,
-        "f1": 0.8128901636578371,
+        "f1": 0.8071703802982074,
         "support": 2832
       },
       "5": {
-        "precision": 0.7209145931405514,
+        "precision": 0.7208453410182517,
         "recall": 0.9948955916473318,
-        "f1": 0.8360304152856308,
+        "f1": 0.8359838462609664,
         "support": 15085
       },
       "6": {
-        "precision": 0.954518606024808,
-        "recall": 0.9993815708101422,
-        "f1": 0.9764350453172205,
+        "precision": 0.9428571428571428,
+        "recall": 1.0,
+        "f1": 0.9705882352941176,
         "support": 6468
       },
       "7": {
-        "precision": 0.8444051528163677,
-        "recall": 0.7930257383465781,
-        "f1": 0.8179093522539606,
+        "precision": 0.882807114297532,
+        "recall": 0.7594591388921836,
+        "f1": 0.8165008926294313,
         "support": 8431
       },
       "8": {
-        "precision": 0.644874715261959,
+        "precision": 0.5976356343677433,
         "recall": 0.44822672577580747,
-        "f1": 0.5288623201942835,
+        "f1": 0.5122591151723515,
         "support": 6316
       },
       "9": {
-        "precision": 0.9298563478711014,
-        "recall": 0.9453947368421053,
-        "f1": 0.9375611665688003,
+        "precision": 0.8909424724602203,
+        "recall": 0.9577631578947369,
+        "f1": 0.923145212428662,
         "support": 7600
       }
     },
     "confusion_matrix": [
       [
-        15854,
-        846,
+        15035,
+        1015,
+        1,
         0,
-        0,
-        685,
-        2325,
-        308,
-        1006,
-        1474,
-        542
+        713,
+        2327,
+        392,
+        839,
+        1827,
+        891
       ],
       [
         0,
-        9044,
+        9266,
         0,
         0,
         0,
         0,
         0,
-        222,
+        0,
         0,
         0
       ],
       [
-        24,
+        18,
         0,
         461,
+        0,
+        12,
+        0,
+        0,
+        1,
         2,
+        0
+      ],
+      [
         1,
         0,
         0,
-        4,
-        2,
-        0
-      ],
-      [
+        6171,
+        3,
+        0,
+        0,
         10,
         0,
-        0,
-        6169,
-        0,
-        0,
-        0,
-        0,
-        6,
         0
       ],
       [
@@ -146,25 +146,25 @@
       ],
       [
         0,
-        1,
-        0,
-        3,
         0,
         0,
-        6464,
+        0,
+        0,
+        0,
+        6468,
         0,
         0,
         0
       ],
       [
         1745,
+        283,
         0,
         0,
         0,
         0,
         0,
-        0,
-        6686,
+        6403,
         0,
         0
       ],
@@ -181,7 +181,7 @@
         0
       ],
       [
-        415,
+        321,
         0,
         0,
         0,
@@ -190,7 +190,7 @@
         0,
         0,
         0,
-        7185
+        7279
       ]
     ]
   },
@@ -203,16 +203,11 @@
   },
   "test_physical_aux_metrics": {},
   "test_structured_transition_metrics": {},
-  "model_path": "historical-source/DVAE_PINN/7d_ablation/runs/D_7d_evidence_chain.pth",
-  "split_file": "historical-source/TRANS/DVAE_3W/splits/3w_seed42_full_val15_test15.json",
+  "model_path": "reference/v2/D/best.pt",
+  "split_file": "protocols/v2/fixed_split.json",
   "split_mode": "loaded",
   "test_split_sha256": "9e9fdd5a5f66922b9df8fee0b2387e38b784122e49aa301dfdc546be2f57e683",
   "config": {
-    "data_root": "../3w_dataset_2.0.0",
-    "output_dir": "historical-source/DVAE_PINN/7d_ablation/runs",
-    "split_file": "splits/3w_seed42_full_val15_test15.json",
-    "ignore_split_file": false,
-    "run_name": "D_7d_evidence_chain",
     "task": "multiclass",
     "T": 128,
     "stride": 128,
@@ -234,15 +229,13 @@
     "zdim": 8,
     "hdim": 64,
     "paper_architecture": false,
-    "init_checkpoint": "historical-source/DVAE_PINN/generalized/runs/dvae_baseline_full_clip20_v1.pth",
     "seed": 42,
     "use_bsw_pinn": false,
     "use_dhsv_pinn": false,
-    "use_unified_physical_rule": true,
-    "use_rule_evidence_features": true,
+    "use_unified_physical_rule": false,
+    "use_rule_evidence_features": false,
     "use_rule_energy_logits": false,
     "rule_energy_logit_weight": 0.0,
-    "pinn_root": "../../DVAE_PINN/10d_dimension_ablation",
     "pinn_weight": 0.0,
     "pinn_trend_weight": 1.0,
     "pinn_pressure_order_weight": 0.0,
@@ -310,7 +303,6 @@
     "boundary_pair_gate_margin": 1.0,
     "boundary_pair_gate_prob": 0.15,
     "boundary_evidence_threshold": 0.35,
-    "hard_boundary_file": null,
     "hard_boundary_weight": 0.0,
     "freeze_dvae": false,
     "freeze_classifier": false,
@@ -318,7 +310,8 @@
     "freeze_chain_prior": false,
     "freeze_physical_aux": false,
     "save_last": false,
-    "resume_state": "historical-source/DVAE_PINN/7d_ablation/resume_states/D_7d_evidence_chain.resume.pth",
-    "save_resume_state": true
-  }
+    "save_resume_state": true,
+    "run_name": "D"
+  },
+  "source_experiment": "F_dvae_chain_only"
 }

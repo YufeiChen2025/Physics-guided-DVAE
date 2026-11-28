@@ -1,0 +1,2 @@
+# Preserve file bytes used by the manifest and frozen data split hashes.
+* -text

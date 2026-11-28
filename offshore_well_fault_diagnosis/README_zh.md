@@ -7,4 +7,6 @@
 - 解压后执行 python reproduce.py verify，可直接核对历史结果。按 [英文说明](README.md) 安装依赖，按 [数据说明](docs/DATA.md) 下载 Petrobras 的两个原始数据版本。重跑已有权重用 evaluate，重新训练用 train。
 - 新输出默认写入 work/。运行 python reproduce.py --help 可以查看具体参数。
 
-更多细节见 [方法与实验口径](docs/METHOD.md) 和 [验证记录](docs/VERIFICATION.md)。
+纯 chain 消融对应 3W 2.0.0 的 D 组和 3W 1.1.1 的 C 组。两组的主分类器只接收 DVAE 表征。
+
+两版的分组及结果见 [实验配置与结果](docs/实验配置与结果.md)。实现细节和复测记录见 [方法说明](docs/METHOD.md) 与 [验证记录](docs/VERIFICATION.md)。

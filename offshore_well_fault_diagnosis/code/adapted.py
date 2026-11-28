@@ -42,27 +42,23 @@ def train(experiment, group, seed, epochs):
     worker = experiment.W
     (worker.OUT / "runs").mkdir(parents=True, exist_ok=True)
     if group in ("B", "EVIDENCE"):
-        worker.ARGS.seed = seed
-        worker.ARGS.role = {"B": "rule", "EVIDENCE": "evidence"}[group]
-        worker.train(max_epochs=epochs)
+        role = {"B": "rule", "EVIDENCE": "evidence"}[group]
+        worker.train(seed, role, max_epochs=epochs)
         return
     if group == "C":
-        original_make_model = experiment.make_model
+        def make_chain_only(seed):
+            return worker.initialise_stage2(seed, "chain_only")
 
-        def make_c_only(*args, **kwargs):
-            model = original_make_model(*args, **kwargs)
-            model.with_r = False
-            return model
-
-        experiment.make_model = make_c_only
-    for role in ("full", "rule"):
-        path = worker.OUT / "runs" / f"seed{seed}_{role}" / "initial.pt"
-        if not path.exists():
-            path.parent.mkdir(parents=True, exist_ok=True)
-            model = worker.initialise_stage2(seed, role)
-            worker.atomic_torch_save(path, {"model": model.state_dict()})
+        experiment.make_model = make_chain_only
+    else:
+        for role in ("full", "rule"):
+            path = worker.OUT / "runs" / f"seed{seed}_{role}" / "initial.pt"
+            if not path.exists():
+                path.parent.mkdir(parents=True, exist_ok=True)
+                model = worker.initialise_stage2(seed, role)
+                worker.atomic_torch_save(path, {"model": model.state_dict()})
     experiment.ROOT = worker.OUT.parent / f"chain_{group}"
-    experiment.train(seed, "decay0", experiment.load_data(), max_epochs=epochs)
+    experiment.train(seed, worker.load_data(use_evidence=(group != "C")), max_epochs=epochs)
 
 
 @torch.inference_mode()
@@ -75,7 +71,7 @@ def evaluate(experiment, group, seed, checkpoint_path, output):
         features = worker.read(worker.BASE / "configs" / "normalization.json")["features"]
         model = TunedDiagnoser(features, ckpt["config"])
     else:
-        role = {"B": "rule", "C": "chain", "D": "full", "EVIDENCE": "evidence"}[group]
+        role = {"B": "rule", "C": "chain_only", "D": "full", "EVIDENCE": "evidence"}[group]
         model = worker.Model(2, role, seed)
     model.load_state_dict(ckpt["model"])
     model.to(experiment.DEVICE).eval()
@@ -84,7 +80,7 @@ def evaluate(experiment, group, seed, checkpoint_path, output):
     x = np.load(cache / "x.npy", mmap_mode="r")
     mask = np.load(cache / "mask.npy", mmap_mode="r")
     index = np.load(cache / "index.npy", mmap_mode="r")
-    if group != "A":
+    if group in ("B", "D", "EVIDENCE"):
         evidence_path = worker.OUT / "cache" / "test_e.npy"
         if not evidence_path.exists():
             raw, valid = worker.raw_features("test")
@@ -99,7 +95,7 @@ def evaluate(experiment, group, seed, checkpoint_path, output):
         if group == "A":
             pred = model.predict(values, observed)
         else:
-            selected = torch.tensor(np.array(evidence[part]), device=experiment.DEVICE)
+            selected = torch.tensor(np.array(evidence[part]), device=experiment.DEVICE) if model.with_e else None
             pred = model.predict(values, observed, selected)
         logits.append(pred.cpu().numpy())
     scores = np.concatenate(logits)

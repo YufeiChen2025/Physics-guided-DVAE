@@ -25,7 +25,7 @@
       "version": "2.0.0",
       "group": "D",
       "seed": 42,
-      "macro_f1": 0.8571313858047537,
+      "macro_f1": 0.8494245612744912,
       "confusion_matrix_exact": true
     },
     {
@@ -94,11 +94,12 @@
       "version": "1.1.1",
       "group": "C",
       "seed": 2025,
-      "macro_f1": 0.9104554417955263,
+      "macro_f1": 0.8879348067391329,
       "confusion_matrix_exact": true,
       "predictions_exact": true,
       "labels_exact": true,
-      "sources_exact": true
+      "sources_exact": true,
+      "checkpoint_epoch": 1
     },
     {
       "version": "1.1.1",
@@ -144,11 +145,12 @@
       "version": "1.1.1",
       "group": "C",
       "seed": 42,
-      "macro_f1": 0.9052334782693939,
+      "macro_f1": 0.841543237626526,
       "confusion_matrix_exact": true,
       "predictions_exact": true,
       "labels_exact": true,
-      "sources_exact": true
+      "sources_exact": true,
+      "checkpoint_epoch": 1
     },
     {
       "version": "1.1.1",
@@ -200,5 +202,19 @@
       "EVIDENCE"
     ]
   },
-  "full_retraining_performed": false
+  "chain_only_revision": {
+    "3W 2.0.0": {
+      "group": "D",
+      "source_experiment": "F_dvae_chain_only",
+      "full_replay_identical": true
+    },
+    "3W 1.1.1": {
+      "group": "C",
+      "full_retraining_seeds": [
+        42,
+        2025
+      ],
+      "chain_weight_decay": 0.0
+    }
+  }
 }

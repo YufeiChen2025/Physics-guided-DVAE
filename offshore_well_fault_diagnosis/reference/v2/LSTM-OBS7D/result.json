@@ -205,8 +205,8 @@
       ]
     ]
   },
-  "model_path": "lstm_obs7d_full.pth",
-  "split_file": "3w_seed42_full_val15_test15.json",
+  "model_path": "reference/v2/LSTM-OBS7D/best.pt",
+  "split_file": "protocols/v2/fixed_split.json",
   "test_split_sha256": "9e9fdd5a5f66922b9df8fee0b2387e38b784122e49aa301dfdc546be2f57e683",
   "evidence_note": "obs7d is a pure observation-derived proxy evidence set; water dimensions use a pressure-flow-temperature proxy because measured water cut is unavailable.",
   "config": {
@@ -226,6 +226,7 @@
     "pooling": "mean",
     "patience": 4,
     "seed": 42,
-    "num_workers": 4
+    "num_workers": 4,
+    "run_name": "LSTM-OBS7D"
   }
 }
